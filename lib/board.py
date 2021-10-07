@@ -1,5 +1,5 @@
 from typing import List
-from helpers import bcolors, BOARD_SPACE, PLAYER_ONE
+from lib.helpers import bcolors, BOARD_SPACE, PLAYER_ONE
 
 class Board:
   def __init__(self, board_list = None) -> None:
@@ -40,7 +40,20 @@ class Board:
     self.board[pos - 1] = "X" if player == PLAYER_ONE else "O"
     return self.board
 
-# b = Board([1, "X", "X", 4, 5, "O", "O", 8, 9])
-# print(b)
-# b.update(1, PLAYER_ONE)
-# print(b)
+  def rows(self):
+    yield self.board[0:3]
+    yield self.board[3:6]
+    yield self.board[6:9]
+
+  def cols(self):
+    yield self.board[0:9:3]
+    yield self.board[1:9:3]
+    yield self.board[2:9:3]
+
+  def diagonals(self):
+    yield [self.board[0], self.board[4], self.board[8]]
+    yield [self.board[2], self.board[4], self.board[6]]
+
+if __name__ == "__main__":
+  board = Board()
+  print(board)
