@@ -5,6 +5,8 @@ clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 PLAYER_ONE = "first"
 PLAYER_TWO = "second"
 BOARD_SPACE = "---+---+---\n"
+PASS_AND_PLAY = "pap"
+PLAYER_VS_COMPUTER = "pvsc"
 
 class bcolors:
     HEADER = '\033[95m'
