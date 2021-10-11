@@ -14,16 +14,16 @@ def check_winner(board: Board):
   for row in board.rows():
     count_res = check_count(row)
     if count_res:
-      return count_res 
+      return (count_res, row) 
 
   for col in board.cols():
     count_res = check_count(col)
     if count_res:
-      return count_res
+      return (count_res, col)
 
   for diagonal in board.diagonals():
     count_res = check_count(diagonal)
     if count_res:
-      return count_res 
+      return (count_res, diagonal) 
   
   return None
