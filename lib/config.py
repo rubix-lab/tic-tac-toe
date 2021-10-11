@@ -1,6 +1,5 @@
 import random, sys
 from lib.helpers import clear, bcolors, PLAYER_ONE, PLAYER_TWO, PASS_AND_PLAY, PLAYER_VS_COMPUTER
-import pyfiglet
 
 get_mode = lambda: input(f"Select game mode: \n"
                           f"- [1] Pass-And-Play \n"
@@ -9,12 +8,16 @@ get_mode = lambda: input(f"Select game mode: \n"
 
 class Config:
   def __init__(self):
-    self.mode = None
-    self.beginner = None
+    pass
 
   def greetings(self):
-    result = pyfiglet.figlet_format("Tic Tac Toe", font = "digital" )
-    print(result)
+    try:
+      import pyfiglet
+      print(pyfiglet.figlet_format("Tic Tac Toe", font = "digital" ))
+    except:
+      print(f"+-+-+-+ +-+-+-+ +-+-+-+\n"
+            f"|T|i|c| |T|a|c| |T|o|e|\n"
+            f"+-+-+-+ +-+-+-+ +-+-+-+\n")
 
   def info(self):
     print(f"Version: 0.0.1 \n"
@@ -42,7 +45,8 @@ class Config:
       return mode_val
 
   def get_beginner(self):
-    return PLAYER_ONE if random.randint(0, 1) else PLAYER_TWO
+    beginner_val = PLAYER_ONE if random.randint(0, 1) else PLAYER_TWO
+    return beginner_val
   
   def _check_start_input(self, value):
     value = value.rstrip("\n")
