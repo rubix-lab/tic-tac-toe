@@ -35,6 +35,10 @@ class Board:
   
     return board_str
 
+  def display_victory(self, pos):
+    # board __str__
+    # board[pos] == sign + blue color
+    pass
   
   def update(self, pos, player) -> List:
     self.board[pos - 1] = "X" if player == PLAYER_ONE else "O"
