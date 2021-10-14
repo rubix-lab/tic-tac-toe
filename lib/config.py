@@ -37,7 +37,7 @@ class Config:
     
   
   def mode_config(self):
-    mode_input = self.get_mode()
+    mode_input = get_mode()
     mode_val = self._check_mode_config_input(mode_input)
     if(mode_val == None):
       return self.mode_config()
