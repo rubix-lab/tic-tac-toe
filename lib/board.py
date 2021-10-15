@@ -1,5 +1,5 @@
 from typing import List
-from lib.helpers import bcolors, BOARD_SPACE, PLAYER_ONE
+from lib.helpers import DEFAULT_BOARD, bcolors, BOARD_SPACE, PLAYER_ONE
 
 check_player_val = lambda val: val != "O" and val != "X"
 
@@ -8,7 +8,7 @@ class Board:
     if board_list:
       self.board = board_list
     else:
-      self.board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      self.board = DEFAULT_BOARD
 
   def __str__(self) -> str:
     """
@@ -41,8 +41,31 @@ class Board:
     return [val for val in self.board if check_player_val(val)]
   
   def update(self, pos, player) -> List:
-    self.board[pos - 1] = "X" if player == PLAYER_ONE else "O"
+    self.board[int(pos) - 1] = "X" if player == PLAYER_ONE else "O"
     return self.board
+
+  def display_victory(self, pos):
+    board_str = "\n"
+    for index, char in enumerate(self.board):
+      if(pos.count(index + 1) != True):
+        char = f" {bcolors.OKBLUE}{char}{bcolors.ENDC} "
+      else:
+        if(char == "X"):
+          char = f" {bcolors.FAIL}{char}{bcolors.ENDC} "
+        elif(char == "O"):
+          char = f" {bcolors.OKGREEN}{char}{bcolors.ENDC} "
+        else:
+          char = f" {char} "
+
+      if((index + 1) % 3 == 0):
+        board_str = f"{board_str}{char}\n"
+        if(index != 8):
+          board_str = f"{board_str}{BOARD_SPACE}"
+      else:
+        char = f"{char}|"
+        board_str = f"{board_str}{char}"
+
+    print(board_str)
 
   def rows(self):
     yield self.board[0:3]
@@ -57,6 +80,20 @@ class Board:
   def diagonals(self):
     yield [self.board[0], self.board[4], self.board[8]]
     yield [self.board[2], self.board[4], self.board[6]]
+
+  def rows_pos(self):
+    yield 1# DEFAULT_BOARD[0:3]
+    yield 2# DEFAULT_BOARD[3:6]
+    yield 3# DEFAULT_BOARD[6:9]
+
+  def cols_pos(self):
+    yield DEFAULT_BOARD[0:9:3]
+    yield DEFAULT_BOARD[1:9:3]
+    yield DEFAULT_BOARD[2:9:3]
+
+  def diagonals_pos(self):
+    yield [DEFAULT_BOARD[0], DEFAULT_BOARD[4], DEFAULT_BOARD[8]]
+    yield [DEFAULT_BOARD[2], DEFAULT_BOARD[4], DEFAULT_BOARD[6]]
 
 if __name__ == "__main__":
   board = Board()
