@@ -42,11 +42,12 @@ class Config:
     if(mode_val == None):
       return self.mode_config()
     else:
-      return mode_val
+      self.mode = mode_val
+      return self.mode
 
   def get_beginner(self):
-    beginner_val = PLAYER_ONE if random.randint(0, 1) else PLAYER_TWO
-    return beginner_val
+    self.beginner = PLAYER_ONE if random.randint(0, 1) else PLAYER_TWO
+    return self.beginner
   
   def _check_start_input(self, value):
     value = value.rstrip("\n")
@@ -75,8 +76,8 @@ class Config:
   def setup(self):
     self.greetings()
     self.info()
-    self.mode = self.mode_config()
-    self.beginner = self.get_beginner()
+    self.mode_config()
+    self.get_beginner()
     self.config_info()
     self.start()
     clear()
