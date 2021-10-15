@@ -1,6 +1,8 @@
 from typing import List
 from lib.helpers import bcolors, BOARD_SPACE, PLAYER_ONE
 
+check_player_val = lambda val: val != "O" and val != "X"
+
 class Board:
   def __init__(self, board_list = None) -> None:
     if board_list:
@@ -35,10 +37,8 @@ class Board:
   
     return board_str
 
-  def display_victory(self, pos):
-    # board __str__
-    # board[pos] == sign + blue color
-    pass
+  def possible_moves(self) -> List:
+    return [val for val in self.board if check_player_val(val)]
   
   def update(self, pos, player) -> List:
     self.board[pos - 1] = "X" if player == PLAYER_ONE else "O"
