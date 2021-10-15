@@ -4,7 +4,7 @@ class Player:
   
   def _check_move_input(self, value, possible_moves):
     value = value.rstrip("\n")
-    if(value in possible_moves):
+    if(value.isdigit() and int(value) in possible_moves):
       return value
     else:
       return None
@@ -14,7 +14,7 @@ class Player:
     player_move_input = input(f"Enter a position {possible_moves}: ")
     tmp_player_move_input = self._check_move_input(player_move_input, possible_moves)
     if(tmp_player_move_input == None):
-      return self.make_move()
+      return self.make_move(board)
     else:
       return tmp_player_move_input
 
