@@ -2,6 +2,7 @@ import os
 
 clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
+DEFAULT_BOARD = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 PLAYER_ONE = "first"
 PLAYER_TWO = "second"
 BOARD_SPACE = "---+---+---\n"
