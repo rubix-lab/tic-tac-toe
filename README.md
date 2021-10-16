@@ -3,6 +3,10 @@
 ## Installation
 
 ```sh
+git clone https://github.com/rubix-lab/tic-tac-toe
+
+cd tic-tac-toe/
+
 sudo pip3 install -r requirements.txt
 ```
 
