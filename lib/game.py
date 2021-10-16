@@ -1,7 +1,7 @@
 import sys
 from lib.board import Board
 from lib.config import Config
-from lib.helpers import PLAYER_ONE, PLAYER_TWO, PASS_AND_PLAY, clear
+from lib.helpers import PLAYER_ONE, PLAYER_TWO, PASS_AND_PLAY, bcolors, clear
 from lib.logic import check_victory
 from lib.player import Player
 from lib.ai import Ai
@@ -22,7 +22,7 @@ class Game:
     self.victory = None
 
   def game_info(self, winner):
-    print(f"{self.first_player if winner == self.first_player else self.second_player} player won!\n")
+    print(f"{self.first_player if winner == self.first_player else self.second_player} player won!")
     pass
 
   def _check_restart_or_exit_input(self, value):
@@ -68,15 +68,15 @@ class Game:
       self.board.display_victory(self.victory[0]) # victory[0] is the position e. g. [1, 2, 3]
       self.restart_or_exit()
 
+  def no_winner(self):
+    print(f"{bcolors.WARNING}No winner!{bcolors.ENDC}\n")
+    self.restart_or_exit()
+
   def loop(self):
     print(self.board)
-    while(not self.victory):
-      if(self.board.possible_moves):
-        self._player_move_cycle(self.first_player)
-        self._player_move_cycle(self.second_player)
-      else:
-        print("No winner!\n")
-        self.restart_or_exit()
+    while(not self.victory): 
+      self._player_move_cycle(self.first_player) if len(self.board.possible_moves()) > 1 else self.no_winner()
+      self._player_move_cycle(self.second_player) if len(self.board.possible_moves()) > 1 else self.no_winner()
 
     
   def start(self):
