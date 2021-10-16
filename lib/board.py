@@ -8,7 +8,7 @@ class Board:
     if board_list:
       self.board = board_list
     else:
-      self.board = DEFAULT_BOARD
+      self.board = DEFAULT_BOARD.copy()
 
   def __str__(self) -> str:
     """
@@ -82,9 +82,9 @@ class Board:
     yield [self.board[2], self.board[4], self.board[6]]
 
   def rows_pos(self):
-    yield 1# DEFAULT_BOARD[0:3]
-    yield 2# DEFAULT_BOARD[3:6]
-    yield 3# DEFAULT_BOARD[6:9]
+    yield DEFAULT_BOARD[0:3]
+    yield DEFAULT_BOARD[3:6]
+    yield DEFAULT_BOARD[6:9]
 
   def cols_pos(self):
     yield DEFAULT_BOARD[0:9:3]
