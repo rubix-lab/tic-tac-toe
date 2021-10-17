@@ -5,8 +5,13 @@ check_player_val = lambda val: val != "O" and val != "X"
 
 class Board:
   def __init__(self, board_list = None) -> None:
+
     if board_list:
-      self.board = board_list
+      check_board_list = [True for x in board_list if (isinstance(x, int) and 1 <= x <= 9) or (x == "X" or x == "O")]
+      if(len(check_board_list) == 9):
+        self.board = board_list
+      else:
+        raise ValueError(f"Board consists of 9 values consisting of intengers 1-9, 'X' and 'O', got: {board_list}")
     else:
       self.board = DEFAULT_BOARD.copy()
 
@@ -44,7 +49,7 @@ class Board:
     self.board[int(pos) - 1] = "X" if player == PLAYER_ONE else "O"
     return self.board
 
-  def display_victory(self, pos):
+  def victory_str(self, pos):
     board_str = "\n"
     for index, char in enumerate(self.board):
       if(pos.count(index + 1) != True):
