@@ -65,7 +65,7 @@ class Game:
     if(possible_victory):
       self.victory = possible_victory
       self.game_info(self.victory[1])
-      print(self.board.display_victory(self.victory[0])) # victory[0] is the position e. g. [1, 2, 3]
+      print(self.board.victory_str(self.victory[0])) # victory[0] is the position e. g. [1, 2, 3]
       self.restart_or_exit()
 
   def no_winner(self):
