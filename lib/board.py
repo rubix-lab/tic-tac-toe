@@ -74,8 +74,8 @@ class Board:
       else:
         char = f"{char}|"
         board_str = f"{board_str}{char}"
-
-    print(board_str)
+  
+    return board_str
 
   def rows(self):
     yield self.board[0:3]
