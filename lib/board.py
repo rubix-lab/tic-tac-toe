@@ -1,5 +1,5 @@
 from typing import List
-from lib.helpers import DEFAULT_BOARD, bcolors, BOARD_SPACE, PLAYER_ONE
+from lib.helpers import DEFAULT_BOARD, PLAYER_TWO, bcolors, BOARD_SPACE, PLAYER_ONE
 
 check_player_val = lambda val: val != "O" and val != "X"
 
@@ -46,7 +46,12 @@ class Board:
     return [val for val in self.board if check_player_val(val)]
   
   def update(self, pos, player) -> List:
-    self.board[int(pos) - 1] = "X" if player == PLAYER_ONE else "O"
+    if(player == PLAYER_ONE):
+      self.board[int(pos) - 1] = "X"
+    elif(player == PLAYER_TWO):
+      self.board[int(pos) - 1] = "O"
+    else:
+      self.board[int(pos) - 1] = int(pos)
     return self.board
 
   def victory_str(self, pos):
