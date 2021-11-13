@@ -5,7 +5,7 @@ from lib.player import Player
 def check_winner(arr, player):
   player_symbol = "X" if player.player == PLAYER_ONE else "O"
   if(arr.count(player_symbol) == 3):
-    return player.player
+    return player
   else:
     return None
   
