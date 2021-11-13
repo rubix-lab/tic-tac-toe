@@ -1,4 +1,4 @@
-import os, math
+import os, math, sys, signal
 
 clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -26,3 +26,5 @@ class bcolors:
     ENDC      = '\033[0m'
     BOLD      = '\033[1m'
     UNDERLINE = '\033[4m'
+
+detect_exit = lambda: signal.signal(signal.SIGINT, lambda sig, frame: sys.exit(0))
