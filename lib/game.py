@@ -26,10 +26,10 @@ class Game:
       # For Ai to declare enemy first
       if(plyr_one_bgnr):
         self.first_player = Player(PLAYER_ONE, True) # if plyr_one_bgnr else Ai(PLAYER_TWO, self.second_player, True)
-        self.second_player = Ai(PLAYER_TWO, self.first_player) # if plyr_one_bgnr else Player(PLAYER_ONE)
+        self.second_player = Ai(PLAYER_TWO, PLAYER_ONE) # if plyr_one_bgnr else Player(PLAYER_ONE)
       else:
         self.second_player =  Player(PLAYER_ONE) # Ai(PLAYER_TWO, self.first_player) if plyr_one_bgnr else Player(PLAYER_ONE)
-        self.first_player = Ai(PLAYER_TWO, self.second_player, True) # Player(PLAYER_ONE, True) if plyr_one_bgnr else Ai(PLAYER_TWO, self.second_player, True)
+        self.first_player = Ai(PLAYER_TWO, PLAYER_ONE, True) # Player(PLAYER_ONE, True) if plyr_one_bgnr else Ai(PLAYER_TWO, self.second_player, True)
 
     self.victory = None
 
