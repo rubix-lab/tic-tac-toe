@@ -1,17 +1,18 @@
 from lib.helpers import bcolors, PLAYER_ONE
 
 class Player:
-  def __init__(self, player) -> None:
+  def __init__(self, player, beginner = False) -> None:
     self.player = player
+    self.beginner = beginner
   
   def color_str(self, input_str) -> str:
-    return f"{bcolors.FAIL if self.player == PLAYER_ONE else bcolors.OKGREEN}{input_str}{bcolors.ENDC}"
+    return f"{bcolors.FAIL if self.beginner else bcolors.OKGREEN}{input_str}{bcolors.ENDC}"
 
   def __str__(self) -> str:
-      return self.color_str("First" if self.player == PLAYER_ONE else "Second")
+      return self.color_str("One" if self.player == PLAYER_ONE else "Two")
   
   def symbol(self) -> str:
-    return self.color_str("X" if self.player == PLAYER_ONE else "O")
+    return self.color_str("X" if self.beginner else "O")
 
   def _check_move_input(self, value, possible_moves):
     value = value.rstrip("\n")
@@ -22,7 +23,7 @@ class Player:
 
   def make_move(self, board):
     possible_moves = board.possible_moves()
-    player_move_input = input(f"{self.__str__()} player ({self.symbol()})\n"
+    player_move_input = input(f"Player {self.__str__()} ({self.symbol()})\n"
                               f"Enter a position {possible_moves}: ")
     tmp_player_move_input = self._check_move_input(player_move_input, possible_moves)
     if(tmp_player_move_input == None):

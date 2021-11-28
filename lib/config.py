@@ -69,7 +69,8 @@ class Config:
   
   def config_info(self):
     str_mode = 'Pass-And-Play' if self.mode == PASS_AND_PLAY else 'Player vs Computer'
-    str_beginner = f'{bcolors.FAIL}Player 1{bcolors.ENDC}' if self.beginner == PLAYER_ONE else (f'{bcolors.OKGREEN}Player 2{bcolors.ENDC}' if self.mode == PASS_AND_PLAY else f'{bcolors.OKGREEN}Computer{bcolors.ENDC}')
+    first_player = "Player One" if self.beginner == PLAYER_ONE else ("Player Two" if self.mode == PASS_AND_PLAY else "Computer")
+    str_beginner = f'{bcolors.FAIL}{first_player}{bcolors.ENDC}'
     print(f"\nMode: {str_mode} \n"
           f"Fisrt player: {str_beginner}\n")
   

@@ -1,12 +1,17 @@
 from typing import List
-from lib.helpers import DEFAULT_BOARD, bcolors, BOARD_SPACE, PLAYER_ONE
+from lib.helpers import DEFAULT_BOARD, PLAYER_TWO, bcolors, BOARD_SPACE, PLAYER_ONE
 
 check_player_val = lambda val: val != "O" and val != "X"
 
 class Board:
   def __init__(self, board_list = None) -> None:
+
     if board_list:
-      self.board = board_list
+      check_board_list = [True for x in board_list if (isinstance(x, int) and 1 <= x <= 9) or (x == "X" or x == "O")]
+      if(len(check_board_list) == 9):
+        self.board = board_list
+      else:
+        raise ValueError(f"Board consists of 9 values consisting of intengers 1-9, 'X' and 'O', got: {board_list}")
     else:
       self.board = DEFAULT_BOARD.copy()
 
@@ -41,10 +46,15 @@ class Board:
     return [val for val in self.board if check_player_val(val)]
   
   def update(self, pos, player) -> List:
-    self.board[int(pos) - 1] = "X" if player == PLAYER_ONE else "O"
+    if(player == PLAYER_ONE):
+      self.board[int(pos) - 1] = "X"
+    elif(player == PLAYER_TWO):
+      self.board[int(pos) - 1] = "O"
+    else:
+      self.board[int(pos) - 1] = int(pos)
     return self.board
 
-  def display_victory(self, pos):
+  def victory_str(self, pos):
     board_str = "\n"
     for index, char in enumerate(self.board):
       if(pos.count(index + 1) != True):
@@ -64,8 +74,8 @@ class Board:
       else:
         char = f"{char}|"
         board_str = f"{board_str}{char}"
-
-    print(board_str)
+  
+    return board_str
 
   def rows(self):
     yield self.board[0:3]

@@ -1,11 +1,16 @@
+from sys import base_exec_prefix
 from lib.board import Board
-from lib.helpers import PLAYER_ONE
+from lib.helpers import PLAYER_ONE, PLAYER_TWO
 from lib.player import Player
 
 def check_winner(arr, player):
-  player_symbol = "X" if player.player == PLAYER_ONE else "O"
+  try:
+    player_symbol = "X" if player.player == PLAYER_ONE else "O"
+  except:
+    player_symbol = "X" if player == PLAYER_ONE else "O"
+
   if(arr.count(player_symbol) == 3):
-    return player.player
+    return player
   else:
     return None
   
@@ -30,3 +35,24 @@ def check_victory(board: Board, player: Player):
       return (diagonal_pos, winner) 
   
   return None
+
+def game_over(board: Board):
+  for row in board.rows():
+    if(row.count("X") == 3):
+      return PLAYER_ONE
+    if(row.count("O") == 3):
+      return PLAYER_TWO
+
+  for col in board.cols():
+    if(col.count("X") == 3):
+      return PLAYER_ONE
+    if(col.count("O") == 3):
+      return PLAYER_TWO
+
+  for diagonal in board.diagonals():
+    if(diagonal.count("X") == 3):
+      return PLAYER_ONE
+    if(diagonal.count("O") == 3):
+      return PLAYER_TWO
+  
+  return True if len(board.possible_moves()) == 0 else False
