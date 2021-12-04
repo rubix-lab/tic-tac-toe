@@ -1,4 +1,4 @@
-from lib.helpers import bcolors, PLAYER_ONE
+from core.helpers import bcolors, PLAYER_ONE
 
 class Player:
   def __init__(self, player, beginner = False) -> None:

@@ -1,10 +1,10 @@
 import sys
-from lib.board import Board
-from lib.config import Config
-from lib.helpers import PLAYER_ONE, PLAYER_TWO, PASS_AND_PLAY, bcolors, clear
-from lib.logic import check_victory
-from lib.player import Player
-from lib.ai import Ai
+from core.board import Board
+from core.config import Config
+from core.helpers import PLAYER_ONE, PLAYER_TWO, PASS_AND_PLAY, bcolors, clear
+from core.logic import check_victory
+from core.player import Player
+from core.ai import Ai
 
 restart_or_exit_input = lambda: input(f"Restart or exit game: \n"
                                       f"- [1] Restart (keep config) \n"
