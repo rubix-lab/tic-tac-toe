@@ -1,5 +1,5 @@
 import unittest
-from lib.board import Board
+from core.board import Board
 
 class TestBoardMethods(unittest.TestCase):
   def test_init_default_board(self):

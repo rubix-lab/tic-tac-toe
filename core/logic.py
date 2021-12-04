@@ -1,7 +1,7 @@
 from sys import base_exec_prefix
-from lib.board import Board
-from lib.helpers import PLAYER_ONE, PLAYER_TWO
-from lib.player import Player
+from core.board import Board
+from core.helpers import PLAYER_ONE, PLAYER_TWO
+from core.player import Player
 
 def check_winner(arr, player):
   try:

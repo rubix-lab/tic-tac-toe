@@ -1,5 +1,5 @@
 import random, sys
-from lib.helpers import clear, bcolors, PLAYER_ONE, PLAYER_TWO, PASS_AND_PLAY, PLAYER_VS_COMPUTER
+from core.helpers import clear, bcolors, PLAYER_ONE, PLAYER_TWO, PASS_AND_PLAY, PLAYER_VS_COMPUTER
 
 get_mode = lambda: input(f"Select game mode: \n"
                           f"- [1] Pass-And-Play \n"

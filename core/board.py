@@ -1,5 +1,5 @@
 from typing import List
-from lib.helpers import DEFAULT_BOARD, PLAYER_TWO, bcolors, BOARD_SPACE, PLAYER_ONE
+from core.helpers import DEFAULT_BOARD, PLAYER_TWO, bcolors, BOARD_SPACE, PLAYER_ONE
 
 check_player_val = lambda val: val != "O" and val != "X"
 
